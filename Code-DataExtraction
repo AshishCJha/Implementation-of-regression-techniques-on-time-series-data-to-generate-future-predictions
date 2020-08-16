@@ -1,0 +1,52 @@
+# Importing Libraries
+import os
+import sys
+import numpy as np
+import pandas as pd
+import glob
+
+# Importing Data
+arrs = os.listdir('.\group82_resource_utilization')
+str1 = ""
+file1=""
+i=1
+file_content = []
+files=[]
+query_arrs=""
+
+col_name='"Timestamp","Memory_Allocated","Memory_Used","CPU_Allocated","CPU_Used","Network_Bandwidth_Utilization","Storage_Space_Utilization","Group_ID","Instance"'
+filename = "inputData.csv"
+File_object = open(filename,"w") 
+File_object.write(col_name+"\n")
+File_object.close()
+            
+for arr in arrs:
+    str1 = arr
+    groupName="group_" +str(i)+"_"
+    
+    if str1.startswith(groupName)==True:
+        Instance=str1.replace(groupName, "")
+        path=".\group82_resource_utilization"+"\\" +str1 +"\\mem.log"
+        f = open(path, "r")
+        qarray=""
+        date=""
+        dateFinal=""
+        datearry=[]
+        strValue=""
+        inputData=""
+        query_arrs=str(f.read()).split("\n")
+        
+        for qarray in query_arrs:
+            strValue = str(qarray).replace('":"',',')
+            date=str(strValue.split(",")[0]).replace('"','')
+            datearry=date.split(" ")
+            if datearry !="" and strValue !="":
+                dateFinal=datearry[1]+"-"+datearry[2]+"-"+datearry[5]
+                mmccns=str(str(strValue.split(",")[1]).replace('"','').replace(':',','))
+                inputData=dateFinal+","+mmccns+","+groupName+","+Instance+"\n"
+            File_app = open(filename,"a")
+            File_app.write(inputData)
+                                    
+        File_app.close()
+            
+            
