@@ -1,7 +1,8 @@
 # Implementation-of-regression-techniques-on-time-series-data-to-generate-future-predictions
 
-# Step 1 : Data Extraction
-# Step 2: Data Cleaning and Checking
+# Step 1 : Data Extraction from Log files
+# Step 2: Data Pre-processing
+#         Checking for missing value (can be treated with Data Imputation)
+#         Changing the time format in '%Y-%m-%d'
 # Step 3 : Exploratory Data Analysis
-# Step 4: Changing the time format in '%Y-%m-%d'
-# Step 5: Applying Time Series Model
+# Step 4: Modeling (Time Series Analysis)
